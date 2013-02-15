@@ -418,9 +418,10 @@ See yason-stock-options-parse for details on the data structure."
   "Pass in a list of symbols in strings; get a list of a-lists out.
 Useful if YQL bails on us"
 
-  (when (listp symbol-or-symbol-list)
-    (error "Drakma and Yahoo don't want to talk if there are multiple
-    symbols in the list. I probably have to encode it more correctly"))
+  ;; ; works fine, 2013-02-14, -ntd
+  ;; (when (listp symbol-or-symbol-list)
+  ;;   (error "Drakma and Yahoo don't want to talk if there are multiple
+  ;;   symbols in the list. I probably have to encode it more correctly"))
 
   (flet ((columnnames ()
            (mapcar #'car
