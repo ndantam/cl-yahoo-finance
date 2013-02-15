@@ -56,13 +56,6 @@ address as string and port as integer")
   (apply 'concatenate 'string strings))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun enquote-string (string)
-  "Surround `string` with double-quotes, suitable for passing to other
-systems."
-  (strcat
-   "\"" string "\""))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun ensure-list (thing)
   "Ensures that `thing` is a list. If it is an atom, it is wrapped in
 a list"
@@ -75,9 +68,8 @@ a list"
   "Calls out to the YQL online API to get info on the list of stock
 symbols"
   (let ((quoted-symbols
-	 (format nil "~{~A~^,~}"  ;join
-		 (mapcar #'enquote-string
-			 symbol-list))))
+         (format nil "~{\"~A\"~^,~}"  ;join
+                 symbol-list)))
 ;;http://query.yahooapis.com/v1/public/yql
 ;; ?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22YHOO%22%2C%22AAPL%22%2C%22GOOG%22%2C%22MSFT%22)&
 ;; diagnostics=true
